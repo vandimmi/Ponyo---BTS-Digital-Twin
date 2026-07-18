@@ -72,16 +72,16 @@ print("Successfully imported readColmapSceneInfo and GaussianModel!")
 """)
 
     cell7 = nbf.v4.new_code_cell("""
-# 7. Placeholder cell for training with commented-out args to fill in.
-# !python train.py -s /kaggle/input/<dataset-name>/data/HCM0421 --iterations 30000 --eval
-print("Uncomment the line above and set the correct dataset path to start training.")
+# 7. Run the full orchestrator to train, render, and zip all scenes in data/
+# (Uncomment the line below when you have attached the dataset to /kaggle/input/<dataset-name>/data)
+# !python run_all_scenes.py
+print("Run run_all_scenes.py once your dataset is mounted.")
 """)
 
     cell8 = nbf.v4.new_code_cell("""
-# 8. Placeholder cell for rendering test poses + zipping submission.zip.
-# !python render_test_poses.py -m output/xxxx --test_poses_csv /kaggle/input/<dataset-name>/data/HCM0421/test/test_poses.csv --output_dir renders/
-# !python package_submission.py
-print("Uncomment the lines above to render test poses and package the submission.zip.")
+# 8. Verify the generated submission.zip
+# !python verify_submission.py
+print("Run verify_submission.py to formally validate the zip.")
 """)
 
     nb.cells = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8]

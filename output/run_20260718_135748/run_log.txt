@@ -1,0 +1,7 @@
+=== Training Run Logs ===
+Date: Sat Jul 18 13:57:48 UTC 2026
+Seed: 42
+=== Environment Info ===
+train.sh: line 19: python: command not found
+=== PIP FREEZE ===
+train.sh: line 26: python: command not found

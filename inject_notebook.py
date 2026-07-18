@@ -12,7 +12,9 @@ def append_files_to_notebook():
         "gaussian-splatting/render_test_poses.py",
         "gaussian-splatting/test_pose_loader.py",
         "gaussian-splatting/package_submission.py",
-        "gaussian-splatting/eval.py"
+        "gaussian-splatting/eval.py",
+        "run_all_scenes.py",
+        "verify_submission.py"
     ]
     
     new_cells = []

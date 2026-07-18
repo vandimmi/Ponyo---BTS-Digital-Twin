@@ -126,7 +126,14 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
         else:
             ssim_value = ssim(image, gt_image)
 
-        loss = (1.0 - opt.lambda_dssim) * Ll1 + opt.lambda_dssim * (1.0 - ssim_value)
+        # Fix 1: Boost SSIM weight to 0.5 to directly optimize the competition score (SSIM is 30% of total score).
+        # Default lambda_dssim is 0.2. We aggressively weight it at 0.5.
+        loss = (1.0 - 0.5) * Ll1 + 0.5 * (1.0 - ssim_value)
+        
+        # Fix 2: Opacity Regularization to eliminate floaters and artifacts in empty space.
+        # This penalizes high opacities, forcing the model to clear up the background haze.
+        opacities = gaussians.get_opacity
+        loss += 0.01 * opacities.mean()
 
         # Depth regularization
         Ll1depth_pure = 0.0
