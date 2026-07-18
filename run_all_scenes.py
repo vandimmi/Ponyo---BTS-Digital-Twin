@@ -64,15 +64,15 @@ def main():
         scene_out_dir = os.path.join(output_root, scene_name)
         renders_dir = os.path.join(scene_out_dir, "renders")
         
-        # 1. Run Training (Will fail locally, but let's write the command)
+        # 1. Run Training
         print(f"-> Training {scene_name}...")
         train_cmd = [
             "python", "gaussian-splatting/train.py",
             "-s", scene,
             "-m", scene_out_dir,
-            "--iterations", "100" # Short run for testing
+            "--iterations", "1000"
         ]
-        # subprocess.run(train_cmd)  # Commented out to avoid the known crash locally, uncomment on Kaggle
+        subprocess.run(train_cmd)
 
         # 2. Render test poses
         print(f"-> Rendering test poses for {scene_name}...")
@@ -82,7 +82,7 @@ def main():
             "--test_poses_csv", os.path.join(scene, "test", "test_poses.csv"),
             "--output_dir", renders_dir
         ]
-        # subprocess.run(render_cmd) # Commented out locally
+        subprocess.run(render_cmd)
 
         # For the sake of local testing, we'll simulate a failure by checking the non-existent renders
         # On Kaggle, this will actually check the real renders
